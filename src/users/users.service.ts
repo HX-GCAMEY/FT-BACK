@@ -16,10 +16,10 @@ export class UsersService {
   }
 
   createUser(user: any) {
-    //Limpio al usuario y me quedo con el nombre unicamente
+    return this.usersRepository.createUser(user);
+  }
 
-    const newUser = user.name;
-
-    return this.usersRepository.createUser(newUser);
+  getUserById(id: string) {
+    return this.usersRepository.getUserById(id);
   }
 }
