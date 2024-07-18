@@ -24,12 +24,13 @@ export class UsersRepository {
     return this.users;
   }
 
-  async createUser(user: any) {
-    //contacto a la DB o unaA API
-    // ejecuta la query
-    console.log(user);
+  getUserById(id: string) {
+    return this.users.find((user) => user.id === +id);
+  }
 
-    //   const user = fetch('urlde usuarios');
-    // }
+  createUser(user: any) {
+    const id = this.users.length + 1;
+    this.users.push({ id, ...user });
+    return user;
   }
 }
