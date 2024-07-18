@@ -13,3 +13,7 @@
 ### Nest Fundamentals II
 
 [Google Slides - Fundamentals II](https://docs.google.com/presentation/d/1BhGcvJh1SbQ4IbAvAsJ1lkm5eSslV3dH/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
+
+### Nest Routing
+
+[Google Slides - Routing](https://docs.google.com/presentation/d/1qe8iPjMucc4q0CFV6a_OPnqUIkbJnnNl/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
