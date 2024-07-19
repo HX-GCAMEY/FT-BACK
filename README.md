@@ -17,3 +17,7 @@
 ### Nest Routing
 
 [Google Slides - Routing](https://docs.google.com/presentation/d/1qe8iPjMucc4q0CFV6a_OPnqUIkbJnnNl/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
+
+### Nest & TypeORM
+
+[Google Slides - TypeORM](https://docs.google.com/presentation/d/1Nb9XmoII0iRjx8uiqMrftgqca2sPHo7y/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)

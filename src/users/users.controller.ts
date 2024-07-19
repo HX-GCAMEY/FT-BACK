@@ -10,7 +10,7 @@ import {
   HttpStatus,
   All,
   Param,
-  Query,
+  // Query,
   Body,
   Headers,
   UseGuards,
@@ -26,14 +26,14 @@ import { DateAdderInterceptor } from './interceptors/date-adder/date-adder.inter
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get()
-  getAllUsers(@Query('name') name: string) {
-    if (name) {
-      return name;
-    }
+  // @Get()
+  // getAllUsers(@Query('name') name: string) {
+  //   if (name) {
+  //     return name;
+  //   }
 
-    return this.usersService.getAllUsers();
-  }
+  //   return this.usersService.getAllUsers();
+  // }
 
   @HttpCode(418)
   @Get('coffe')
