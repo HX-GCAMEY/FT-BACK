@@ -1,17 +1,22 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, Body, Post, Param } from '@nestjs/common';
 import { TodosService } from './todos.service';
 
 @Controller('todos')
 export class TodosController {
-  constructor(
-    private readonly todosService: TodosService,
-    @Inject('ACCESS_TOKEN') private accessToken: string,
-  ) {}
+  constructor(private todosService: TodosService) {}
 
   @Get()
-  findAll() {
-    return this.accessToken === 'clave123'
-      ? this.todosService.findAll()
-      : 'No tienes acceso';
+  getTodos() {
+    return this.todosService.getTodos();
+  }
+
+  @Post()
+  createTodo(@Body() todo: any) {
+    return this.todosService.createTodo(todo);
+  }
+
+  @Get(':id')
+  getTodoById(@Param('id') id: number) {
+    return `Este es el todo con id ${id}`;
   }
 }
