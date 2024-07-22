@@ -15,14 +15,17 @@ import {
   Headers,
   UseGuards,
   UseInterceptors,
+  ParseUUIDPipe,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response } from 'express';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { DateAdderInterceptor } from './interceptors/date-adder/date-adder.interceptor';
+import { UsersBodyDTO } from './user.dto';
 
 @Controller('users')
-// @UseInterceptors(DateAdderInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -31,7 +34,6 @@ export class UsersController {
   //   if (name) {
   //     return name;
   //   }
-
   //   return this.usersService.getAllUsers();
   // }
 
@@ -50,9 +52,10 @@ export class UsersController {
 
   @Post()
   @UseInterceptors(DateAdderInterceptor)
-  createUser(@Body() user: any, @Req() request) {
+  createUser(@Body() user: UsersBodyDTO, @Req() request) {
     const modifiedUser = { ...user, createdAt: request.now };
 
+    console.log(modifiedUser);
     return this.usersService.createUser(modifiedUser);
   }
 
@@ -81,7 +84,10 @@ export class UsersController {
   }
 
   @Get(':id') // users/5
-  getUserById(@Param('id') id: string) {
-    return this.usersService.getUserById(id);
+  @UsePipes(new ValidationPipe({ transform: true }))
+  getUserById(@Param('id') id: number) {
+    console.log(typeof id);
+    return 'busco por id';
+    // return this.usersService.getUserById(id);
   }
 }

@@ -21,3 +21,7 @@
 ### Nest & TypeORM
 
 [Google Slides - TypeORM](https://docs.google.com/presentation/d/1Nb9XmoII0iRjx8uiqMrftgqca2sPHo7y/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
+
+### Nest Pipes
+
+[Google Slides - Pipes](https://docs.google.com/presentation/d/1aw7r8ha4W8a11pzdSa1RTM2luMWB1pYK/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
