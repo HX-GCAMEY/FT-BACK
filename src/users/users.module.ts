@@ -4,6 +4,8 @@ import { UsersService } from './users.service';
 import { UsersRepository } from './users.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
+import { CloudinaryConfig } from 'src/config/cloudinary';
+import { CloudinaryService } from './cloudinary.service';
 
 // const mockUsersService = {
 //   getAllUsers() {
@@ -20,6 +22,8 @@ import { User } from './entities/user.entity';
     //   useValue: mockUsersService,
     // },
     UsersService,
+    CloudinaryConfig,
+    CloudinaryService,
     UsersRepository,
     {
       provide: 'API_USERS',

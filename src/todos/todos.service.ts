@@ -10,15 +10,15 @@ export class TodosService {
     private readonly todosDbRepository: Repository<Todo>,
   ) {}
 
-  getTodos() {
-    return this.todosDbRepository.find();
+  async getTodos() {
+    return await this.todosDbRepository.find();
   }
 
-  findById(id: number) {
-    return this.todosDbRepository.findOneBy({ id });
+  async findById(id: number) {
+    return await this.todosDbRepository.findOneBy({ id });
   }
 
-  createTodo(todo: Todo) {
-    return this.todosDbRepository.save(todo);
+  async createTodo(todo: Todo) {
+    return await this.todosDbRepository.save(todo);
   }
 }
