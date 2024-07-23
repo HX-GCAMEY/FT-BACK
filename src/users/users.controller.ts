@@ -15,19 +15,29 @@ import {
   Headers,
   UseGuards,
   UseInterceptors,
-  ParseUUIDPipe,
+  // ParseUUIDPipe,
   UsePipes,
   ValidationPipe,
+  HttpException,
+  UploadedFile,
+  ParseFilePipe,
+  MaxFileSizeValidator,
+  FileTypeValidator,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response } from 'express';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { DateAdderInterceptor } from './interceptors/date-adder/date-adder.interceptor';
 import { UsersBodyDTO } from './user.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { CloudinaryService } from './cloudinary.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly cloudinaryService: CloudinaryService,
+  ) {}
 
   // @Get()
   // getAllUsers(@Query('name') name: string) {
@@ -67,7 +77,17 @@ export class UsersController {
 
   @Delete()
   deleteUser() {
-    return 'Esta ruta elimina un usuario';
+    try {
+      throw new Error();
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.I_AM_A_TEAPOT,
+          error: 'Soy una Tetera',
+        },
+        HttpStatus.I_AM_A_TEAPOT,
+      );
+    }
   }
 
   @All('generica')
@@ -83,11 +103,32 @@ export class UsersController {
     return 'Este es el perfil del usuario';
   }
 
+  @Post('profile/images')
+  @UseInterceptors(FileInterceptor('image'))
+  uploadProfileImage(
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({
+            maxSize: 300000,
+            message: 'The size must be 300kb max',
+          }),
+          new FileTypeValidator({
+            fileType: /(jpg|jpeg|png|webp)$/,
+          }),
+        ],
+      }),
+    )
+    file: Express.Multer.File,
+  ) {
+    return this.cloudinaryService.uploadImage(file);
+  }
+
   @Get(':id') // users/5
   @UsePipes(new ValidationPipe({ transform: true }))
-  getUserById(@Param('id') id: number) {
-    console.log(typeof id);
-    return 'busco por id';
-    // return this.usersService.getUserById(id);
+  getUserById(@Param('id') id: string) {
+    // console.log(typeof id);
+    // return 'busco por id';
+    return this.usersService.getUserById(id);
   }
 }

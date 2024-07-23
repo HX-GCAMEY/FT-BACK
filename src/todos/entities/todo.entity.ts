@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { File } from './fileUpload.entity';
 
 @Entity({
   name: 'todos',
@@ -15,4 +16,7 @@ export class Todo {
 
   @Column({ default: false })
   isCompleted: boolean;
+
+  @OneToMany(() => File, (file) => file.todo)
+  files: File[];
 }
