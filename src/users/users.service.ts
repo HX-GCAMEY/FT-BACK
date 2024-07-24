@@ -10,9 +10,9 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async createUser(user: User) {
-    return await this.usersRepository.save(user);
-  }
+  // async createUser(user: User) {
+  //   return await this.usersRepository.save(user);
+  // }
 
   async getUserById(id: string) {
     const user = await this.usersRepository.findOne({ where: { id } });
