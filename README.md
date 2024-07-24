@@ -25,3 +25,11 @@
 ### Nest Pipes
 
 [Google Slides - Pipes](https://docs.google.com/presentation/d/1aw7r8ha4W8a11pzdSa1RTM2luMWB1pYK/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
+
+### Nest File Upload
+
+[Google Slides - FileUpload](https://docs.google.com/presentation/d/1rl8esGDMKkaXKac_0y4sJPCYR4JJ7JTt/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
+
+### Nest Authentication I
+
+[Google Slides - Authentication I](https://docs.google.com/presentation/d/1aaCQmCLVF0bH2gSL62MhB4cnnEyvRXjc/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)

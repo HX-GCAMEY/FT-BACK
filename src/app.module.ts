@@ -7,6 +7,7 @@ import { LoggerMiddleware } from './middlewares/logger';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import typeorm from './config/typeorm';
+import { JwtModule } from '@nestjs/jwt';
 
 // import { APP_INTERCEPTOR } from '@nestjs/core';
 // import { DateAdderInterceptor } from './users/interceptors/date-adder/date-adder.interceptor';
@@ -27,6 +28,12 @@ import typeorm from './config/typeorm';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) =>
         configService.get('typeorm'),
+    }),
+
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '1h' },
     }),
   ],
   controllers: [AppController],

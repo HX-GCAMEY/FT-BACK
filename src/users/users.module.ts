@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { CloudinaryConfig } from 'src/config/cloudinary';
 import { CloudinaryService } from './cloudinary.service';
+import { AuthService } from './auth.service';
 
 // const mockUsersService = {
 //   getAllUsers() {
@@ -43,6 +44,7 @@ import { CloudinaryService } from './cloudinary.service';
         return cleanUsers;
       },
     },
+    AuthService,
   ],
 })
 export class UsersModule {}

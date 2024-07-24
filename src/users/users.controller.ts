@@ -12,7 +12,7 @@ import {
   Param,
   // Query,
   Body,
-  Headers,
+  // Headers,
   UseGuards,
   UseInterceptors,
   // ParseUUIDPipe,
@@ -31,12 +31,14 @@ import { DateAdderInterceptor } from './interceptors/date-adder/date-adder.inter
 import { UsersBodyDTO } from './user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from './cloudinary.service';
+import { AuthService } from './auth.service';
 
 @Controller('users')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
     private readonly cloudinaryService: CloudinaryService,
+    private readonly authService: AuthService,
   ) {}
 
   // @Get()
@@ -60,13 +62,19 @@ export class UsersController {
     response.status(HttpStatus.FORBIDDEN).send('este es un mensaje');
   }
 
-  @Post()
+  @Post('/signup')
   @UseInterceptors(DateAdderInterceptor)
   createUser(@Body() user: UsersBodyDTO, @Req() request) {
     const modifiedUser = { ...user, createdAt: request.now };
 
-    console.log(modifiedUser);
-    return this.usersService.createUser(modifiedUser);
+    return this.authService.signUp(modifiedUser);
+  }
+
+  @Post('/signin')
+  userSignIn(@Body() credentials: any) {
+    const { email, password } = credentials;
+
+    return this.authService.signIn(email, password);
   }
 
   @Put()
@@ -96,11 +104,9 @@ export class UsersController {
   }
 
   @Get('profile')
-  getProfile(@Headers('token') token: string) {
-    if (token !== '1234') {
-      return 'No tienes acceso';
-    }
-    return 'Este es el perfil del usuario';
+  @UseGuards(AuthGuard)
+  getProfile(@Req() request) {
+    return request.user;
   }
 
   @Post('profile/images')
