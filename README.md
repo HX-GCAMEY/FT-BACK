@@ -33,3 +33,7 @@
 ### Nest Authentication I
 
 [Google Slides - Authentication I](https://docs.google.com/presentation/d/1aaCQmCLVF0bH2gSL62MhB4cnnEyvRXjc/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
+
+### Nest Authentication II
+
+[Google Slides - Authentication II](https://docs.google.com/presentation/d/1MnfAEL3LdkcPdhAOVxgLeVsVadMdiVkD/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
