@@ -32,6 +32,9 @@ import { UsersBodyDTO } from './user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from './cloudinary.service';
 import { AuthService } from './auth.service';
+import { Roles } from 'src/decorators/roles.decorator';
+import { Role } from 'src/roles.enum';
+import { RolesGuard } from 'src/guards/roles.guard';
 
 @Controller('users')
 export class UsersController {
@@ -41,6 +44,13 @@ export class UsersController {
     private readonly authService: AuthService,
   ) {}
 
+  @Get('admin')
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard, RolesGuard)
+  getAdmin() {
+    return 'Ruta exclusiva para administradores';
+  }
+
   // @Get()
   // getAllUsers(@Query('name') name: string) {
   //   if (name) {
@@ -48,7 +58,6 @@ export class UsersController {
   //   }
   //   return this.usersService.getAllUsers();
   // }
-
   @HttpCode(418)
   @Get('coffe')
   makeCoffe() {
@@ -82,6 +91,16 @@ export class UsersController {
   updateUser() {
     return 'Esta ruta actualiza un usuario';
   }
+
+  @Get('auth0/protected')
+  getAuth0(@Req() request: any) {
+    return JSON.stringify(request.oidc.user);
+  }
+
+  @Put()
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard, RolesGuard)
+  upgradeToAdmin() {}
 
   @Delete()
   deleteUser() {

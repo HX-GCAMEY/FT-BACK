@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsEmail, MinLength, IsString } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsEmail,
+  MinLength,
+  IsString,
+  IsEmpty,
+} from 'class-validator';
 
 export class UsersBodyDTO {
   id: string;
@@ -16,4 +22,7 @@ export class UsersBodyDTO {
   @IsString()
   @MinLength(5)
   password: string;
+
+  @IsEmpty()
+  isAdmin?: boolean;
 }

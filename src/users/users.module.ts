@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { UsersRepository } from './users.repository';
@@ -7,6 +7,7 @@ import { User } from './entities/user.entity';
 import { CloudinaryConfig } from 'src/config/cloudinary';
 import { CloudinaryService } from './cloudinary.service';
 import { AuthService } from './auth.service';
+import { requiresAuth } from 'express-openid-connect';
 
 // const mockUsersService = {
 //   getAllUsers() {
@@ -47,4 +48,8 @@ import { AuthService } from './auth.service';
     AuthService,
   ],
 })
-export class UsersModule {}
+export class UsersModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(requiresAuth()).forRoutes('users/auth0/protected');
+  }
+}
