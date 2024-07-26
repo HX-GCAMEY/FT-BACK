@@ -1,15 +1,15 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+
 import { User } from './entities/user.entity';
-import { Repository } from 'typeorm';
+
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { UsersService } from './users.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User)
-    private readonly usersRepository: Repository<User>,
+    private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -18,14 +18,14 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(user.password, 10);
 
-    return await this.usersRepository.save({
+    return await this.usersService.createUser({
       ...user,
       password: hashedPassword,
     });
   }
 
   async signIn(email: string, password: string) {
-    const foundUser = await this.usersRepository.findOneBy({ email: email });
+    const foundUser = await this.usersService.findByEmail(email);
 
     if (!foundUser) {
       throw new BadRequestException('Invalid Credentials');
