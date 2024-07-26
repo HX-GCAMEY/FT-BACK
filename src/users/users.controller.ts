@@ -26,15 +26,15 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response } from 'express';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 import { DateAdderInterceptor } from './interceptors/date-adder/date-adder.interceptor';
 import { UsersBodyDTO } from './user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from './cloudinary.service';
 import { AuthService } from './auth.service';
-import { Roles } from 'src/decorators/roles.decorator';
-import { Role } from 'src/roles.enum';
-import { RolesGuard } from 'src/guards/roles.guard';
+import { Roles } from '../decorators/roles.decorator';
+import { Role } from '../roles.enum';
+import { RolesGuard } from '../guards/roles.guard';
 
 @Controller('users')
 export class UsersController {

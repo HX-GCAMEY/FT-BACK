@@ -4,7 +4,7 @@ import { UsersService } from './users.service';
 import { UsersRepository } from './users.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { CloudinaryConfig } from 'src/config/cloudinary';
+import { CloudinaryConfig } from '../config/cloudinary';
 import { CloudinaryService } from './cloudinary.service';
 import { AuthService } from './auth.service';
 import { requiresAuth } from 'express-openid-connect';
