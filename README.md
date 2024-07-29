@@ -41,3 +41,7 @@
 ### Nest Testing
 
 [Google Slides - Testing](https://docs.google.com/presentation/d/1X_j53uvAUm-Xu-14UnvKNvUJCsgh-Gob/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
+
+### Nest OpenAPI
+
+[Google Slides - OpenAPI](https://docs.google.com/presentation/d/17cU9i46lYPlg-8APhrDrwI5X2vvkBMwi/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
