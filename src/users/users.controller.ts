@@ -28,14 +28,16 @@ import { UsersService } from './users.service';
 import { Request, Response } from 'express';
 import { AuthGuard } from '../guards/auth.guard';
 import { DateAdderInterceptor } from './interceptors/date-adder/date-adder.interceptor';
-import { UsersBodyDTO } from './user.dto';
+import { LoginDTO, UsersBodyDTO } from './user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from './cloudinary.service';
 import { AuthService } from './auth.service';
 import { Roles } from '../decorators/roles.decorator';
 import { Role } from '../roles.enum';
 import { RolesGuard } from '../guards/roles.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('USERS')
 @Controller('users')
 export class UsersController {
   constructor(
@@ -44,6 +46,7 @@ export class UsersController {
     private readonly authService: AuthService,
   ) {}
 
+  @ApiBearerAuth()
   @Get('admin')
   @Roles(Role.Admin)
   @UseGuards(AuthGuard, RolesGuard)
@@ -59,7 +62,7 @@ export class UsersController {
   //   return this.usersService.getAllUsers();
   // }
   @HttpCode(418)
-  @Get('coffe')
+  @Get('coffee') // /coffee
   makeCoffe() {
     return 'No puedo preparar cafe! Soy una tetera!';
   }
@@ -80,7 +83,7 @@ export class UsersController {
   }
 
   @Post('/signin')
-  userSignIn(@Body() credentials: any) {
+  userSignIn(@Body() credentials: LoginDTO) {
     const { email, password } = credentials;
 
     return this.authService.signIn(email, password);

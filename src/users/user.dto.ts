@@ -1,3 +1,4 @@
+import { PickType } from '@nestjs/swagger';
 import {
   IsNotEmpty,
   IsEmail,
@@ -10,6 +11,9 @@ export class UsersBodyDTO {
   id: string;
   createdAt?: string;
 
+  /**
+   * @example "Bartolomiau"
+   */
   @IsNotEmpty()
   @IsString()
   name: string;
@@ -26,3 +30,5 @@ export class UsersBodyDTO {
   @IsEmpty()
   isAdmin?: boolean;
 }
+
+export class LoginDTO extends PickType(UsersBodyDTO, ['email', 'password']) {}

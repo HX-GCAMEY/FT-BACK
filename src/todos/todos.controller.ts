@@ -10,7 +10,9 @@ import {
 import { TodosService } from './todos.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FileService } from './files.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('TODOS')
 @Controller('todos')
 export class TodosController {
   constructor(
