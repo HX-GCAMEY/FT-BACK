@@ -1,0 +1,20 @@
+version: "3.8"
+
+  
+services:
+  nestapp: 
+    build: ./
+    ports:
+      - "3000:3000"
+    depends_on:
+     - postgresql
+
+  postgresql:
+    image: "postgres"
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+    env_file:
+      - .development.env
+
+volumes:
+  pgdata:
