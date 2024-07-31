@@ -41,3 +41,20 @@
 ### Nest Testing
 
 [Google Slides - Testing](https://docs.google.com/presentation/d/1X_j53uvAUm-Xu-14UnvKNvUJCsgh-Gob/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
+
+
+
+
+
+
+
+
+
+
+### Nest Docker
+
+[Google Slides - Docker](https://docs.google.com/presentation/d/1P-RgLCvP_gx0cAoDCxI23ecwmtx_8hXP/edit?usp=sharing&ouid=111345539982328960069&rtpof=true&sd=true)
+
+
+
+
